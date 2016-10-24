@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+//自定义的公共样式
+body {
+    //font-family: '等线', '宋体', '微软雅黑';
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+.ar {
+    text-align: right;
+}
+
+.ac {
+    text-align: center;
+}
+
+.error {
+    margin-top: 5px;
+    small {
+        color: #f30;
+    }
+}
+
+.ui-datepicker{
+    table{
+        margin:0;
+    }
+}
+
+.header-container > .top-header .top-nav{
+    @media (min-width: 768px){
+        padding:0;
+    }
+    .logo{
+        display: inline-block;
+        width:auto;
+    }
+    .logo-img{
+        width:40px;
+    }
+}
+
+.date-picker{
+    display: inline-block;
+    vertical-align: middle;
+
+    input[type='text']{
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        width:120px;
+
+        &:focus{
+            border-color: #4E7FE1;
+            box-shadow: none;
+        }
+    }
+}
+
+.vertical-form {
+    .form-group {
+        .form-control {
+            max-width: 400px;
+        }
+    }
+}
+
+.form-horizontal{
+    .form-group {
+        input[type='number']{
+            height:34px;
+            padding-left:10px;
+        }
+    }
+}
+
+.header-container {
+    .logo {
+        text-align: left;
+
+        .logo-text {
+            font-size: 20px;
+        }
+    }
+}
+
+.panel-page {
+    margin-bottom: 0;
+    border-bottom: 0;
+    border-color: #e9e9e9;
+    > .panel-heading {
+        color: #626262;
+        background-color: #f6f6f6;
+        border-color: #e9e9e9;
+
+        .breadcrumb{
+            margin: 0;
+            padding: 0;
+
+            >li + li:before{
+                color:#666;
+            }
+        }
+    }
+    .panel-body {
+        > .operate-row {
+            height: 40px;
+            margin-bottom: 10px;
+
+            .search-form {
+                .form-group {
+                    margin-right: 15px;
+
+                    .form-control {
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+
+        .list-table {
+            .table {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .cs-paginator {
+        height: 40px;
+        margin-top: 20px;
+        .pagination {
+            margin: 0;
+        }
+    }
+}

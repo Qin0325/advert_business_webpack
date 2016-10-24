@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+//登录注册样式
+.body-auth{
+    padding:0;
+    margin:0;
+    .page-signin,.page-signup {
+        h3{
+            color:#fff;
+        }
+        .form-group{
+            margin-bottom:20px;
+            label{
+                color:#fff;
+                display: block;
+            }
+
+            .error{
+                margin-top:5px;
+                small{
+                    color:#f30;
+                }
+            }
+        }
+        .form-control{
+            background-color: #fff;
+            color:#333;
+            label{
+                display: block;
+                color:#fff;
+            }
+        }
+
+        .input-code{
+            height:34px;
+            width:150px;
+            padding-left:15px;
+            vertical-align: middle;
+            color:#333;
+        }
+
+        .form-bottom{
+            color:#fff;
+            a{
+                color:#5dbb5c;
+                &:hover{
+                    color:#49ac48;
+                }
+            }
+        }
+    }
+}

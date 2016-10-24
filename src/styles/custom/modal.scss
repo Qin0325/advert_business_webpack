@@ -1,0 +1,60 @@
+@charset "UTF-8";
+//modal弹窗组件样式
+.modal{
+    .modal-header{
+        h3{
+            margin:0;
+        }
+        .close{
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            cursor: pointer;
+        }
+    }
+
+    .modal-content{
+        max-height:700px;
+        overflow: auto;
+
+        .form-group{
+            &:last-child{
+                margin-bottom:0;
+            }
+            .group-operation{
+                margin-top:5px;
+            }
+        }
+    }
+
+    .modal-dialog{
+        &.modal-ad-detail-lg{
+            width:1000px;
+
+            .ad-detail{
+                margin-bottom:20px;
+
+                .img{
+                    width:300px;
+                    >img{
+                        padding:10px;
+                        width:280px;
+                        border:1px solid #ccc;
+                    }
+                }
+
+                .info{
+                    .row{
+                        line-height: 30px;
+
+                        .title{
+                            width:150px;
+                            text-align:right;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

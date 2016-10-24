@@ -1,0 +1,139 @@
+<!doctype html>
+<!--[if lt IE 8]>
+<html class="no-js lt-ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>辣妈帮商户开放平台</title>
+    <meta name="description" content="辣妈帮商户开放平台"/>
+    <meta name="keywords" content="辣妈帮，开放平台"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    <!-- Needs icons, font... therefore can not be part of main.css -->
+    <link href="fonts/iconfont.css" rel='stylesheet'/>
+    <!-- end Needs images -->
+
+    <!-- build:css({.tmp,client}) styles/main.css -->
+    <link rel="stylesheet" href="styles/bootstrap.css"/>
+    <link rel="stylesheet" href="styles/ui.css"/>
+    <link rel="stylesheet" href="styles/main.css"/>
+    <!-- endbuild -->
+    <link href="favicon.ico" rel="shortcut icon"/>
+</head>
+    <body data-ng-app="app"
+          id="app"
+          class="app"
+          data-custom-page
+          data-off-canvas-nav
+          data-ng-controller="AppCtrl"
+          data-ng-class=" { 'layout-boxed': main.layout === 'boxed',
+                            'nav-collapsed-min': main.isMenuCollapsed
+          } ">
+        <!--[if lt IE 9]>
+            <div class="lt-ie9-bg">
+                <p class="browsehappy"><strong>您的浏览器版本过低</strong></p>
+                <p>为了提高你的体验，请提升您的<a href="http://browsehappy.com/" target="_blank">浏览器</a></p>
+            </div>
+        <![endif]-->
+
+        <header data-ng-include=" 'app/common/layout/header.html' "
+                 id="header"
+                 class="header-container "
+                 data-ng-class="{ 'header-fixed': main.fixedHeader,
+                                  'bg-white': ['11','12','13','14','15','16','21'].indexOf(main.skin) >= 0,
+                                  'bg-dark': main.skin === '31',
+                                  'bg-primary': ['22','32'].indexOf(main.skin) >= 0,
+                                  'bg-success': ['23','33'].indexOf(main.skin) >= 0,
+                                  'bg-info-alt': ['24','34'].indexOf(main.skin) >= 0,
+                                  'bg-warning': ['25','35'].indexOf(main.skin) >= 0,
+                                  'bg-danger': ['26','36'].indexOf(main.skin) >= 0
+                 }"></header>
+
+        <div class="main-container"
+             data-ng-class="{ 'app-nav-horizontal': main.menu === 'horizontal' }">
+            <aside data-ng-include=" 'app/common/layout/sidebar.html' "
+                   id="nav-container"
+                   class="nav-container"
+                   data-ng-class="{ 'nav-fixed': main.fixedSidebar,
+                                    'nav-horizontal': main.menu === 'horizontal',
+                                    'nav-vertical': main.menu === 'vertical',
+                                    'bg-white': ['31','32','33','34','35','36'].indexOf(main.skin) >= 0,
+                                    'bg-dark': ['31','32','33','34','35','36'].indexOf(main.skin) < 0
+                   }">
+            </aside>
+
+            <div id="content" class="content-container">
+                <section data-ng-view
+                         ng-cloak
+                         class="view-container {{main.pageTransition.class}}"></section>
+            </div>
+
+            <footer data-ng-include=" 'app/common/layout/footer.html' "
+                    id="footer"
+                    class="app-footer">
+            </footer>
+        </div>
+
+        <!-- build:js scripts/vendor.js -->
+        <!--jquery plugin-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+        <!--jquery plugin end-->
+
+        <script src="vendor/angular/angular.js"></script>
+        <script src="vendor/angular-route/angular-route.min.js"></script>
+        <script src="vendor/angular-aria/angular-aria.min.js"></script>
+        <script src="vendor/angular-animate/angular-animate.min.js"></script>
+        <script src="vendor/angular-local-storage/angular-local-storage.min.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js scripts/ui.js -->
+        <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
+        <script src="vendor/cityMultiple/js/jquery.cityMultiple.js"></script>
+        <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <script src="vendor/alertify/alertify.min.js"></script>
+
+        <script src="vendor/jquery/jquery.slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="vendor/angular-scroll/angular-scroll.min.js"></script>
+
+        <script src="vendor/ng-tags-input/ng-tags-input.min.js"></script>
+        <script src="vendor/angular-wizard/angular-wizard.min.js"></script>
+
+        <script src="vendor/webuploader/webuploader.min.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp,client}) scripts/app.js -->
+        <!-- injector:js -->
+        <script src="app/app.module.js"></script>
+
+        <script src="app/core/app.config.js"></script>
+        <script src="app/core/app.controller.js"></script>
+        <script src="app/core/config.route.js"></script>
+
+        <script src="app/common/common.module.js"></script>
+        <script src="app/common/common.constants.js"></script>
+        <script src="app/common/common.rest.js"></script>
+        <script src="app/common/common.service.js"></script>
+        <script src="app/common/common.directive.js"></script>
+
+        <script src="app/common/layout/nav.module.js"></script>
+        <script src="app/common/layout/nav.directive.js"></script>
+        <script src="app/common/layout/nav.controller.js"></script>
+
+        <script src="app/page/signin/signin.module.js"></script>
+        <script src="app/page/signup/signup.module.js"></script>
+        <script src="app/page/active/active.module.js"></script>
+
+        <script src="app/ad/adList/adList.module.js"></script>
+        <script src="app/ad/adList/adList.controller.js"></script>
+        <script src="app/ad/adCreate/adCreate.module.js"></script>
+        <script src="app/ad/adCreate/adCreate.controller.js"></script>
+
+        <script src="app/account/finance.module.js"></script>
+        <script src="app/account/finance.controller.js"></script>
+        <!-- endinjector -->
+        <!-- endbuild -->
+    </body>
+</html>

@@ -1,0 +1,122 @@
+@charset "UTF-8";
+//广告创建页面样式
+.page-adCreate {
+    .steps {
+        .form-horizontal {
+            .form-control {
+                max-width: 90%;
+                width: 500px;
+                padding: 0 10px;
+                border-radius: 5px;
+                height: 35px;
+                box-shadow: none;
+                border: 1px #ccc solid;
+            }
+
+            .inline-control{
+                line-height: 35px;
+            }
+
+            select {
+                height: 25px;
+            }
+
+            .medium-input {
+                padding-left: 10px;
+                max-width: 80%;
+                width: 250px;
+                border-radius: 5px;
+                height: 35px;
+                box-shadow: none;
+                border: 1px #ccc solid;
+
+                &.desc{
+                    width:155px;
+                }
+            }
+
+            .ui-slider {
+                width: 500px;
+                max-width: 90%;
+            }
+        }
+
+        .post-time{
+            .date-picker{
+                display: inline-block;
+            }
+        }
+    }
+
+    .image-uploader {
+        display: inline-block;
+        width: 68px;
+        height: 33px;
+        /*background: url('../../images/assets/uploader.png') center no-repeat;*/
+        line-height: 33px;
+        padding:0;
+        text-align: center;
+        vertical-align: middle;
+        z-index: 2;
+        margin-bottom:10px;
+
+        .webuploader-pick{
+            opacity: 0;
+            -ms-opacity: 0;
+            -os-opacity: 0;
+            -webkit-opacity: 0;
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+        }
+
+        [id^='rt_rt'] {
+            width: 68px ! important;
+            height:33px ! important;
+        }
+    }
+
+    button.image-uploader{
+        position: absolute;
+        left: 12px;
+        z-index: 0;
+    }
+
+    .img{
+        .upload-img{
+            max-height: 150px;
+            max-width: 100%;
+        }
+        .upload-empty{
+            width:80px;
+            height:80px;
+            background: url('../../images/assets/uploader.png') center no-repeat;
+        }
+    }
+
+    .city-selector {
+        #cyy-cityMultiple {
+            width: 530px;
+            height: auto;
+            overflow: hidden;
+
+            .cyy-items {
+                overflow-y: auto;
+            }
+
+            #cyy-cities {
+                width: 326px;
+                border-right: 1px solid #eee;
+                border: 0;
+            }
+
+            #cyy-selected-list {
+                height: 278px;
+                overflow-y: auto;
+                border-left: 1px solid #368ee0;
+            }
+            #cyy-cities-list {
+                overflow: hidden;
+                height: auto;
+            }
+        }
+    }
+}

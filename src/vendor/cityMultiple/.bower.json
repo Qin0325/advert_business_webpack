@@ -1,0 +1,13 @@
+{
+  "name": "cityMultiple",
+  "homepage": "https://github.com/cyy0418/cityMultiple",
+  "_release": "2c049f7fe4",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "2c049f7fe405f49b090433213131acb52a5cce68"
+  },
+  "_source": "https://github.com/cyy0418/cityMultiple.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/cyy0418/cityMultiple.git"
+}

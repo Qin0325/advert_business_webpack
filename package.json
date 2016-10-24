@@ -1,0 +1,41 @@
+{
+  "name": "advert_business_webpack",
+  "version": "1.0.0",
+  "description": "商户开放平台，angular框架\u001b[D\u001b[D\u001b[D mvvm狂�框架\u001b[D\u001b[D\u001b[\u001b[CMVC框架，ES6，Webpack构建",
+  "main": "index.js",
+  "keywords": [
+    "angular",
+    "webpack",
+    "es6"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jason Liu",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "css-loader": "^0.25.0",
+    "font-subset-loader": "^1.0.2",
+    "fontmin": "^0.9.6",
+    "html-loader": "^0.4.4",
+    "html-webpack-plugin": "^2.22.0",
+    "node-sass": "^3.10.1",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2"
+  },
+  "dependencies": {
+    "alertifyjs": "^1.8.0",
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-local-storage": "^0.5.0",
+    "angular-route": "^1.5.8",
+    "babel-polyfill": "^6.13.0",
+    "jquery": "^3.1.0"
+  }
+}
