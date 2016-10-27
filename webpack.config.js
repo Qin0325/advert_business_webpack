@@ -17,8 +17,11 @@ module.exports = {
             exclude: /node_modules/,
             loader: 'babel-loader'
         }, {
+            test   : /\.css$/,
+            loaders: ['style', 'css', 'resolve-url']
+        },{
             test: /\.scss$/,
-            loaders: ["style", "css",'resolve-url', 'sass']
+            loaders: ["style", "css",'resolve-url', 'sass','resolve-url']
         }, {
             test: /\.(woff|svg|eot|ttf|woff2)/,
             loader: 'url-loader?name=[path][name].[ext]'
