@@ -11,6 +11,6 @@ import LocalStorageModule from "angular-local-storage";
 
 import './styles/bootstrap.scss';
 import './styles/ui.scss';
-import './styles/main.scss';
+//import './styles/main.scss';
 
 import './app';
