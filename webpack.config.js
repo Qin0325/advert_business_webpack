@@ -14,27 +14,28 @@ module.exports = {
             test: /\.html$/,
             loader: 'raw'
         }, {
+            test: /\.(woff|svg|eot|ttf|woff2)/,
+            loader: 'file?name=[path][name].[ext]'
+        }, {
+            test: /\.(jpe?g|png|gif|svg)$/i,
+            loader: 'file?name=[path][name].[ext]!img?progressive=true'
+        }, {
             test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel-loader'
         }, {
             test   : /\.css$/,
-            //loaders: ExtractTextPlugin.extract(['style', 'css'])
-            loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+            loaders:['style', 'css']
+            //loader: ExtractTextPlugin.extract("style-loader", "css-loader")
         },{
             test: /\.scss$/,
-            loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
-        }, {
-            test: /\.(woff|svg|eot|ttf|woff2)/,
-            loader: 'url-loader?name=[path][name].[ext]'
-        }, /*{
-            test: /\.(jpe?g|png|gif|svg)$/i,
-            loader: 'url?name=[path][name].[ext]!img?progressive=true'
-        }*/]
+            //loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
+            loaders: ["style", "css","resolve-url","sass"]
+        }]
     },
 
     plugins: [
-        new ExtractTextPlugin("[hash].css"),
+        //new ExtractTextPlugin("[hash].css"),
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
