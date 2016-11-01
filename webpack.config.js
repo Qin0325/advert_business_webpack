@@ -12,30 +12,30 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.html$/,
-            loader: 'raw'
+            loader: 'html'
         }, {
-            test: /\.(woff|svg|eot|ttf|woff2)/,
+            test: /\.(woff|eot|ttf|woff2)$/,
             loader: 'file?name=[path][name].[ext]'
         }, {
-            test: /\.(jpe?g|png|gif|svg)$/i,
-            loader: 'file?name=[path][name].[ext]!img?progressive=true'
+            test: /\.(jpe?g|png|gif|svg|ico)$/,
+            loader: 'url-loader?limit=8192&name=./img/[hash].[ext]'
         }, {
             test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel-loader'
         }, {
             test   : /\.css$/,
-            loaders:['style', 'css']
-            //loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+            //loaders:['style', 'css']
+            loader: ExtractTextPlugin.extract("style-loader", "css-loader")
         },{
             test: /\.scss$/,
-            //loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
-            loaders: ["style", "css","resolve-url","sass"]
+            loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
+            //loaders: ["style", "css","resolve-url","sass"]
         }]
     },
 
     plugins: [
-        //new ExtractTextPlugin("[hash].css"),
+        new ExtractTextPlugin("[hash].css"),
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
@@ -52,7 +52,7 @@ module.exports = {
     devServer: {
         contentBase: './dist',
         port: 8000,
-        inline: false,
+        inline: true,
         open: 'http://localhost:8000/#/'
     }
 }

@@ -1,6 +1,7 @@
 /**
  * 使用babel-loader转换es2015
  */
+import './fonts/iconfont.css';
 import './styles/bootstrap.scss';
 import './styles/ui.scss';
 import './styles/main.scss';
