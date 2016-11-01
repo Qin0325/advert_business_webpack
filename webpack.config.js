@@ -1,34 +1,41 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry: './src/entry.js',
     output: {
         path: './dist',
-        filename: 'app.bundle.js'
+        filename: '[hash].js?'
     },
 
     module: {
         loaders: [{
             test: /\.html$/,
-            loader: 'raw'
+            loader: 'html'
+        }, {
+            test: /\.(woff|eot|ttf|woff2)$/,
+            loader: 'file?name=[path][name].[ext]'
+        }, {
+            test: /\.(jpe?g|png|gif|svg|ico)$/,
+            loader: 'url-loader?limit=8192&name=./img/[hash].[ext]'
         }, {
             test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel-loader'
         }, {
+            test   : /\.css$/,
+            //loaders:['style', 'css']
+            loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+        },{
             test: /\.scss$/,
-            loaders: ["style", "css",'resolve-url', 'sass']
-        }, {
-            test: /\.(woff|svg|eot|ttf|woff2)/,
-            loader: 'url-loader?name=[path][name].[ext]'
-        }, {
-            test: /\.(jpe?g|png|gif|svg)$/i,
-            loader: 'resolve-url!img?progressive=true'
+            loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
+            //loaders: ["style", "css","resolve-url","sass"]
         }]
     },
 
     plugins: [
+        new ExtractTextPlugin("[hash].css"),
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
@@ -45,7 +52,7 @@ module.exports = {
     devServer: {
         contentBase: './dist',
         port: 8000,
-        inline: false,
+        inline: true,
         open: 'http://localhost:8000/#/'
     }
 }
