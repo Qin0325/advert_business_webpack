@@ -7,19 +7,20 @@ import './styles/ui.scss';
 import './styles/main.scss';
 import './styles/custom/custom.scss';
 
-require.ensure([
-    'jquery',
-    'jquery-ui',
-    'webuploader'
-], function(require) {
-    let $ = require('jquery');
-    require('jquery-ui');
-    require('webuploader');
-    let angular=require("angular");
-    let ngRoute=require("angular-route");
-    let ngAria=require("angular-aria");
-    let ngAnimate=require("angular-animate");
-    let LocalStorageModule=require("angular-local-storage");
-
-    require('./app');
-});
+import "jquery";
+import "jquery-ui";
+import "jquery-slimscroll";
+import "jquery-datetimepicker";
+import "angular";
+import "angular-route";
+import "angular-aria";
+import "angular-Animate";
+import "angular-local-storage";
+import "angular-scroll";
+import "angular-ui-bootstrap";
+import "angular-wizard";
+import "ng-tags-input";
+import "webuploader";
+import "alertifyjs";
+import "./vendor/cityMultiple/js/jquery.cityMultiple";
+import './app/main';

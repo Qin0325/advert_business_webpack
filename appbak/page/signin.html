@@ -1,0 +1,51 @@
+<div class="page-signin" ng-controller="loginCtrl">
+
+    <div class="signin-header">
+        <section class="logo text-center">
+            <div class="-align-center"><img src="./images/logo.png"/></div>
+            <h3 class="-align-center">{{main.brand}}</h3>
+        </section>
+    </div>
+    <div class="signin-body">
+        <div class="container">
+            <div class="form-container">
+                <form role="form" name="signinForm" ng-submit="login()">
+                    <div class="form-group">
+                        <label for="userName">用户名或邮箱:</label>
+                        <input type="text" class="form-control" id="userName" name="userName" placeholder="请输入用户名"
+                               ng-model="userName"
+                               required>
+                        <div class="error" ng-show="signinForm.userName.$dirty && signinForm.userName.$invalid">
+                            <small ng-show="signinForm.userName.$error.required">* 请输入您的用户名！</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>密码:</label>
+                        <input type="password" class="form-control" name="password" placeholder="请输入密码"
+                               ng-model="password"
+                               required>
+                        <div class="error" ng-show="signinForm.password.$dirty && signinForm.password.$invalid">
+                            <small ng-show="signinForm.password.$error.required">* 请输入密码！</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>验证码:</label>
+                        <input type="text" class="input-code" placeholder="请输入验证码"  name="vcode"
+                               ng-model="vcode"
+                               required/>
+                        <img ng-src="http://{{constants.businessServer}}/Businessad/User/captcha?{{timestr}}"/>
+                        <button type="button" class="btn btn-info btnGetCode" ng-click="getCheckCode()">换一个</button>
+                        <div class="error" ng-show="signinForm.vcode.$dirty && signinForm.vcode.$invalid">
+                            <small ng-show="signinForm.vcode.$error.required">* 请输入验证码！</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-lg btn-block text-center">登录</button>
+                    </div>
+                </form>
+                <div class="divider"></div>
+                <div class="form-bottom"><label>还没账号，去</label><a href="#/page/signup"><strong>注册</strong></a></div>
+            </div>
+        </div>
+    </div>
+</div>

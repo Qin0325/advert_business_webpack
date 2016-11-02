@@ -1,0 +1,93 @@
+<div class="modal-header">
+    <h3>广告详情</h3>
+    <a class="close" ng-click="cancel()"><i class="icoF" role="button" tabindex="0">&#xe618;</i></a>
+</div>
+<div class="modal-body">
+    <div class="row ad-detail">
+        <div class="col-sm-6 img">
+            <img ng-src="{{ad.adfiles}}"/>
+        </div>
+        <div class="col-sm-6 info">
+            <div class="row">
+                <div class="col-sm-4 title"><strong>广告名称</strong></div>
+                <div class="col-sm-8">{{ad.adname}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 title"><strong>广告ID</strong></div>
+                <div class="col-sm-8">{{ad.id}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 title"><strong>广告状态</strong></div>
+                <div class="col-sm-8">{{ad.ad_status | adStatusConvert}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 title"><strong>投放日期</strong></div>
+                <div class="col-sm-8">{{ad.ad_start_time | datelineToDate}}~{{ad.ad_end_time | datelineToDate}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 title"><strong>投放平台</strong></div>
+                <div class="col-sm-8">{{ad.client | clientConvert}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 title"><strong>投放形式</strong></div>
+                <div class="col-sm-8">{{ad.form | adFormConvert}}</div>
+            </div>
+
+            <div class="row" ng-if="ad.form=='1'">
+                <div class="col-sm-4 title"><strong>广告文案</strong></div>
+                <div class="col-sm-8">{{ad.desc}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 title"><strong>孕期</strong></div>
+                <div class="col-sm-8">{{ad.gestational}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 title"><strong>定向条件</strong></div>
+                <div class="col-sm-8">
+                    <ul>
+                        <li>年龄：{{ad.adage}}</li>
+                        <li>区域：{{ad.area | areaConvert }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 title"><strong>用户最后登录时间</strong></div>
+                <div class="col-sm-8" ng-if="ad.user_last_login_stime && ad.user_last_login_etime">{{ad.user_last_login_stime | datelineToDate}}至{{ad.user_last_login_etime | datelineToDate}}</div>
+                <div class="col-sm-8" ng-if="!ad.user_last_login_etime && ad.user_last_login_stime">{{ad.user_last_login_stime | datelineToDate}}之后</div>
+                <div class="col-sm-8" ng-if="!ad.user_last_login_stime && ad.user_last_login_etime">{{ad.user_last_login_etime | datelineToDate}}之前</div>
+                <div class="col-sm-8" ng-if="!ad.user_last_login_stime && !ad.user_last_login_etime">不限</div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 title"><strong>广告出价</strong></div>
+                <div class="col-sm-8">{{ad.click_price}}元</div>
+            </div>
+        </div>
+    </div>
+    <blockquote class="blockquote-colored" ng-show="ad.exposure_day_data.length>0">统计效果</blockquote>
+    <div class="table-responsive" ng-show="ad.exposure_day_data.length>0">
+        <table class="table table-hover table-bordered table-striped table-condensed">
+            <thead>
+                <th>日期</th>
+                <th>曝光量</th>
+                <th>点击次数</th>
+                <th>曝光点击率</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="exposure_day_data in ad.exposure_day_data">
+                    <td>{{exposure_day_data.cdate }}</td>
+                    <td>{{exposure_day_data.imp }}</td>
+                    <td>{{exposure_day_data.pv }}</td>
+                    <td>{{exposure_day_data.imppvrate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
