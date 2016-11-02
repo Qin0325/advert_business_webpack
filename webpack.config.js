@@ -6,7 +6,7 @@ module.exports = {
     entry: './src/entry.js',
     output: {
         path: './dist',
-        filename: '[hash].js?'
+        filename: '[hash].js'
     },
 
     module: {
@@ -25,12 +25,10 @@ module.exports = {
             loader: 'babel-loader'
         }, {
             test   : /\.css$/,
-            //loaders:['style', 'css']
             loader: ExtractTextPlugin.extract("style-loader", "css-loader")
         },{
             test: /\.scss$/,
             loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
-            //loaders: ["style", "css","resolve-url","sass"]
         }]
     },
 
@@ -46,6 +44,11 @@ module.exports = {
             output: {
                 comments: false
             }
+        }),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            "window.jQuery": "jquery"
         })
     ],
 

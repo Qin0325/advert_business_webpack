@@ -1,11 +1,21 @@
 (function(){
     'use strict';
 
-    angular.module('app',['ngRoute']);
+    angular.module('app',[
+        'ngRoute',
+        'ngAnimate',
+        'ngAria',
 
-    angular.module('app').config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/',{
-            template: require('./template/test.html')
-        })
-    }]);
+        // 3rd Party Modules
+        'LocalStorageModule',
+        'mgo-angular-wizard',
+        'ui.bootstrap',
+        'duScroll',
+        'ngTagsInput',
+
+        'app.common',
+
+        //admin
+        'app.adList',
+    ]);
 })();
