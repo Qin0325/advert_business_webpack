@@ -7,12 +7,19 @@ import './styles/ui.scss';
 import './styles/main.scss';
 import './styles/custom/custom.scss';
 
-import "babel-polyfill";
-import $ from 'jquery';
-import angular from "angular";
-import ngRoute from "angular-route";
-import ngAria from "angular-aria";
-import ngAnimate from "angular-animate";
-import LocalStorageModule from "angular-local-storage";
+require.ensure([
+    'jquery',
+    'jquery-ui',
+    'webuploader'
+], function(require) {
+    let $ = require('jquery');
+    require('jquery-ui');
+    require('webuploader');
+    let angular=require("angular");
+    let ngRoute=require("angular-route");
+    let ngAria=require("angular-aria");
+    let ngAnimate=require("angular-animate");
+    let LocalStorageModule=require("angular-local-storage");
 
-import './app';
+    require('./app');
+});

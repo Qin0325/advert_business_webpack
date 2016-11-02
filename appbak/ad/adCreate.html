@@ -1,0 +1,183 @@
+<div class="panel panel-page page-adCreate"  ng-controller="AdCreateCtrl">
+    <div class="panel-heading"><strong>新建广告</strong></div>
+    <div class="panel-body">
+        <wizard current-step="currentStep">
+            <wz-step wz-title="基本信息" canexit="baseForm.$valid">
+                <blockquote class="blockquote-colored">
+                    <strong>基本信息</strong>
+                </blockquote>
+                <form class="form-horizontal baseForm" name="baseForm" role="form" novalidate ng-submit="onCheckBaseInfo(this)">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="adname">广告名称</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="adname" name="adname" class="form-control" placeholder="请输入广告名称" ng-model="ad.adname"
+                                   required>
+                            <div class="error" ng-show="(baseForm.adname.$dirty || baseForm.submitted)&& baseForm.adname.$invalid">
+                                <small ng-show="baseForm.adname.$error.required">* 请输入广告名称</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">投放日期</label>
+                        <div class="col-sm-9 post-time">
+                            <div class="date-picker date-picker-left"
+                                 datetime-range
+                                 format="Y-m-d"
+                                 hide-time="true"
+                                 start-flag="ad_start_time"
+                                 end-flag="ad_end_time"
+                                 on-change="onChangeDate(flag,time)"></div>
+                            <div class="error" ng-show="!(ad.ad_start_time && ad.ad_end_time) && baseForm.submitted">
+                                <small>* 请输入广告投放日期（开始日期，结束日期）</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">网站链接</label>
+                        <div class="col-sm-9">
+                            <input type="url" id="bidMatter" class="form-control" name="url" placeholder="请输入网站链接http://"
+                                   ng-model="ad.url"
+                                   ng-if="ad.type==1"
+                                   required/>
+                            <div class="error" ng-show="(baseForm.url.$dirty || baseForm.submitted) && baseForm.url.$invalid && ad.type==1">
+                                <small ng-show="baseForm.url.$error.required">* 请输入网站链接</small>
+                                <small ng-show="baseForm.url.$error.url">* 请输入正确的网站链接</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="content">广告出价</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="medium-input" id="content" placeholder="请输入广告出价" name="click_price"
+                                   ng-model="ad.click_price"
+                                   required/>&nbsp;&nbsp;元/点击（建议出价1.5~2元/点击）
+                            <div class="error" ng-show="(baseForm.click_price.$dirty || baseForm.submitted) && baseForm.click_price.$invalid">
+                                <small ng-show="baseForm.click_price.$error.required">* 请输入广告出价</small>
+                                <small ng-show="baseForm.click_price.$error.number">* 广告出价只能是数值</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="content"></label>
+                        <div class="col-sm-9">
+                            <button type="submit" class="btn btn-primary">下一步</button>
+                        </div>
+                    </div>
+                </form>
+            </wz-step>
+            <wz-step wz-title="规格选择">
+                <blockquote class="blockquote-colored">
+                    <strong>规格选择</strong>
+                </blockquote>
+                <form class="form-horizontal specificationForm" name="specificationForm" role="form" novalidate ng-submit="onCheckNorm(this)">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">投放平台</label>
+                        <div class="col-sm-9 inline-control">
+                            <input type="radio" name="client" value="1" ng-cheked="ad.client==1" ng-model="ad.client"/>辣妈帮&nbsp;&nbsp;<input type="radio" name="client" value="2" ng-cheked="ad.client==2"/>孕期伴侣
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">投放形式</label>
+                        <div class="col-sm-9 inline-control">
+                            <select name="form" ng-model="ad.form">
+                                <option value="1" ng-selected="ad.form=='1'">软广</option>
+                                <option value="2" ng-selected="ad.form=='2'">硬广</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">广告图片</label>
+                        <div class="col-sm-9">
+                            <div class="image-uploader" id="adPicker">上传图片</div>(图片大小 <span ng-if="ad.form=='1'">500X500</span><span ng-if="ad.form=='2'">1243X720</span>)
+                            <button type="button" class="image-uploader btn btn-success" ng-if="!ad.adfiles">上传图片</button>
+                            <button type="button" class="image-uploader btn btn-success" ng-if="ad.adfiles">更换图片</button>
+                            <div class="img">
+                                <img class="upload-img" ng-src="{{ad.adfiles}}" ng-show="ad.adfiles">
+                                <div class="upload-empty" ng-show="!ad.adfiles"></div>
+                            </div>
+                            <div class="error" ng-show="!ad.adfiles && specificationForm.submitted">
+                                <small>* 请上传广告图片</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="ad.form=='1'">
+                        <label class="col-sm-3 control-label" for="desc">广告文案</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="desc" name="desc" class="medium-input desc" placeholder="请输入广告文案" ng-model="ad.desc" maxlength="15" ng-maxlength="15"
+                                   required/>&nbsp;&nbsp;(限定15个字)
+                            <div class="error" ng-show="(specificationForm.desc.$dirty || specificationForm.submitted) && specificationForm.desc.$invalid">
+                                <small ng-show="specificationForm.desc.$error.required">* 请输入广告文案</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <button type="submit" class="btn btn-primary">下一步</button>
+                        </div>
+                    </div>
+                </form>
+            </wz-step>
+            <wz-step wz-title="定向设置">
+                <blockquote class="blockquote-colored">
+                    <strong>定向设置</strong>
+                </blockquote>
+                <form class="form-horizontal settingForm" name="settingForm" role="form" novalidate ng-submit="onSubmit()">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">投放区域</label>
+                        <div class="col-sm-9">
+                            <div city-selector
+                                 cities="ad.area"
+                                 on-ready="citySelector(cityUtil)"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">用户年龄</label>
+                        <div class="col-sm-9 inline-control">
+                            <input type="radio" name="age" value="1" ng-click="ad.adage=0" checked/>不限年龄&nbsp;&nbsp;<input type="radio" name="age" value="2" ng-click="ad.adage = '15,30'"/>年龄区间
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="ad.adage">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <div ui-slider max="60" min="5" range="15,30" unit="岁" on-range="onChangeAge(range)"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">用户孕期</label>
+                        <div class="col-sm-9 inline-control">
+                            <input type="checkbox" name="gestational[]" value="1" ng-model="ad.gestational[0]" ng-checked="ad.gestational[0]=='1'" ng-true-value="1" ng-false-value=""/>孕早期&nbsp;&nbsp;
+                            <input type="checkbox" name="gestational[]" value="2" ng-model="ad.gestational[1]" ng-checked="ad.gestational[1]=='2'" ng-true-value="2" ng-false-value=""/>孕中期&nbsp;&nbsp;
+                            <input type="checkbox" name="gestational[]" value="3" ng-model="ad.gestational[2]" ng-checked="ad.gestational[2]=='3'" ng-true-value="3" ng-false-value=""/>孕晚期&nbsp;&nbsp;
+                            <input type="checkbox" name="gestational[]" value="4" ng-model="ad.gestational[3]" ng-checked="ad.gestational[3]=='4'" ng-true-value="4" ng-false-value=""/>1个宝宝&nbsp;&nbsp;
+                            <input type="checkbox" name="gestational[]" value="5" ng-model="ad.gestational[4]" ng-checked="ad.gestational[4]=='5'" ng-true-value="5" ng-false-value=""/>2个宝宝&nbsp;&nbsp;
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">用户最后登录时间</label>
+                        <div class="col-sm-9 post-time">
+                            <div class="date-picker date-picker-left"
+                                 datetime-range
+                                 format="Y-m-d"
+                                 hide-time="true"
+                                 start-flag="user_last_login_stime"
+                                 end-flag="user_last_login_etime"
+                                 on-change="onChangeDate(flag,time)"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </wz-step>
+        </wizard>
+    </div>
+</div>

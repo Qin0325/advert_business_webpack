@@ -1,0 +1,11 @@
+<div class="page page-active" ng-controller="ActiveCtrl">
+    <div class="active-container text-center">
+        <div class="success" ng-if="!message">
+            <h2>您的账号已激活成功！将为您跳转到登录页......</h2>
+        </div>
+        <div class="error" ng-if="message">
+            <h2>{{message}}</h2>
+            <a class="btn btn-w-md btn-gap-v btn-primary" href="/#/page/signup">重新注册</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="panel panel-page page-finance" ng-controller="FinanceCtrl">
+    <div class="panel-heading"><strong>财务记录</strong></div>
+    <div class="panel-body">
+        <div class="row" >
+            <div class="col-sm-12 operate-left">
+                <form class="form-inline search-form">
+                    <div class="form-group">
+                        <label>当前余额：</label>{{amount}}元
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="table-responsive list-table" data-slim-scroll slim-height="contentListHeight">
+            <table class="table table-hover table-bordered table-striped table-condensed">
+                <thead>
+                <tr>
+                    <th>日期</th>
+                    <th>存入（元）</th>
+                    <th>支出（元）</th>
+                    <th>备注</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="account in accountList">
+                    <td>{{account.dateline | datelineToDate}}</td>
+                    <td>{{account.amount | amountConvert:'in'}}</td>
+                    <td>{{account.amount | amountConvert:'out'}}</td>
+                    <td>{{account.remark}}</td>
+                </tr>
+                <tr ng-show="accountList.length==0">
+                    <td colspan="4">暂无财务记录</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="cs-paginator ac">
+            <uib-pagination total-items="paginator.totalItems"
+                            ng-model="paginator.currentPage"
+                            max-size="paginator.maxSize"
+                            boundary-links="true"
+                            rotate="false"
+                            items-per-page="paginator.itemsPerPage"
+                            previous-text="&lsaquo;"
+                            first-text="&lsaquo;&lsaquo;"
+                            last-text="&rsaquo;&rsaquo;"
+                            next-text="&rsaquo;">
+            </uib-pagination>
+        </div>
+    </div>
+</div>
