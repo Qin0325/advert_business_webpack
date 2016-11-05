@@ -4,7 +4,90 @@
     <meta charset="utf-8">
     <link href="favicon.ico" rel="shortcut icon"/>
 </head>
-<body ng-app="app">
-<div ng-view></div>
-</body>
+<body data-ng-app="app" ng-cloak
+      id="app"
+      class="app"
+      data-custom-page
+      data-off-canvas-nav
+      data-ng-controller="AppCtrl"
+      data-ng-class=" { 'layout-boxed': main.layout === 'boxed',
+                            'nav-collapsed-min': main.isMenuCollapsed
+          } ">
+<header class="header-container  top-header clearfix"
+        ng-controller="HeaderCtrl"
+        id="header"
+        data-ng-class="{ 'header-fixed': main.fixedHeader,
+                                  'bg-white': ['11','12','13','14','15','16','21'].indexOf(main.skin) >= 0,
+                                  'bg-dark': main.skin === '31',
+                                  'bg-primary': ['22','32'].indexOf(main.skin) >= 0,
+                                  'bg-success': ['23','33'].indexOf(main.skin) >= 0,
+                                  'bg-info-alt': ['24','34'].indexOf(main.skin) >= 0,
+                                  'bg-warning': ['25','35'].indexOf(main.skin) >= 0,
+                                  'bg-danger': ['26','36'].indexOf(main.skin) >= 0
+                 }">
+    <div class="top-nav">
+        <!--<div class="logo bg-primary">
+            <a href="#/">
+                &lt;!&ndash;<img class="logo-img" src="./images/logo.png"/>&ndash;&gt;
+                <span class="logo-text">{{constants.brand}}</span>
+            </a>
+        </div>-->
+
+        <ul class="nav-right pull-right list-unstyled">
+            <li>
+                <a class="btn btn-link">
+                    <i class="icoF">&#xe60e;</i>{{$root.userName}}
+                </a>
+            </li>
+            <!--<li>
+                <a class="btn btn-link" ng-click="logout()">
+                    <i class="icoF">&#xe60b;</i>注销
+                </a>
+            </li>-->
+        </ul>
+    </div>
+</header>
+<div class="main-container" data-ng-class="{ 'app-nav-horizontal': main.menu === 'horizontal' }">
+    <aside id="nav-container"
+           class="nav-container"
+           data-ng-class="{ 'nav-fixed': main.fixedSidebar,
+                                    'nav-horizontal': main.menu === 'horizontal',
+                                    'nav-vertical': main.menu === 'vertical',
+                                    'bg-white': ['31','32','33','34','35','36'].indexOf(main.skin) >= 0,
+                                    'bg-dark': ['31','32','33','34','35','36'].indexOf(main.skin) < 0
+                   }">
+        <div class="nav-wrapper">
+            <ul id="nav"
+                class="nav"
+                data-slim-scroll
+                slim-height="sidebarHeight"
+                data-collapse-nav
+                data-highlight-active>
+                <li>
+                    <a href="#/ad"><span class="icoF">&#xe60c;</span>目录1</a>
+                    <ul>
+                        <li><a href="#/ad/adList"><span class="icoF">&#xe600;</span>目录1.1</a></li>
+                        <li><a href="#/ad/adCreate"><span class="icoF">&#xe60a;</span>目录1.2</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#/account"><span class="icoF">&#xe60e;</span>目录2</a>
+                    <ul>
+                        <li><a href="#/account/finance"><span class="icoF">&#xe60d;</span>目录2.1</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <div id="content" class="content-container">
+        <section ng-view class="view-container {{main.pageTransition.class}}"></section>
+    </div>
+    <footer id="footer"
+            class="app-footer">
+        <div class="info">
+            Shenzhen Lamabang Technology Co., Ltd.2009-2016 All Rights Reserved 　　版权所有 　©辣妈帮 ©辣妈商城　 粤ICP备13070153号
+        </div>
+    </footer>
+</div>
+</body >
 </html>

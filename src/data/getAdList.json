@@ -1,0 +1,29 @@
+{
+    "status_code":0,
+    "message":"OK",
+    "data":{
+        "total":20,
+        "list":[
+            {
+                "id":1,
+                "adname":"测试广告1",
+                "ad_post_time":"1478315135",
+                "exposure":568,
+                "pv":589,
+                "click_price":1.35,
+                "ad_status":2,
+                "exposurerate":"90%"
+            },
+            {
+                "id":2,
+                "adname":"测试广告2",
+                "ad_post_time":"1478314035",
+                "exposure":568,
+                "pv":589,
+                "click_price":1.35,
+                "ad_status":2,
+                "exposurerate":"80%"
+            }
+        ]
+    }
+}

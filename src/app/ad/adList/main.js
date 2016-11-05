@@ -1,2 +1,3 @@
-import "./adList.module";
-import "./adList.controller";
+import "./module";
+import "./controller";
+import "./filter"

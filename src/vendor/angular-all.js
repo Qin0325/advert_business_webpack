@@ -1,0 +1,9 @@
+import "angular";
+import "angular-route";
+import "angular-aria";
+import "angular-Animate";
+import "angular-local-storage";
+import "angular-scroll";
+import "angular-ui-bootstrap";
+import "angular-wizard";
+import "ng-tags-input";

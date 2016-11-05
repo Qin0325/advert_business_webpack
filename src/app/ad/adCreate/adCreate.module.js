@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('app.adCreate', [])
-        .service('Uploader', uploaderCreator)
-        .directive('uiSlider', uiSlider)
-        .directive('citySelector', citySelector);
+        .service('Uploader', [uploaderCreator])
+        .directive('uiSlider', [uiSlider])
+        .directive('citySelector', [citySelector]);
 
     function uploaderCreator() {
         function Uploader(options) {

@@ -3,10 +3,14 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-    entry: './src/entry.js',
+    entry: {
+        app: './src/entry.js',
+        //vendor:[]
+    },
     output: {
         path: './dist',
-        filename: '[hash].js'
+        filename: '[name].js',
+        chunkFilename: '[name].chunk.js',
     },
 
     module: {
@@ -15,21 +19,25 @@ module.exports = {
             loader: 'html'
         }, {
             test: /\.(woff|eot|ttf|woff2)$/,
-            loader: 'file?name=[path][name].[ext]'
+            loader: 'file?name=./fonts/[name].[ext]'
         }, {
-            test: /\.(jpe?g|png|gif|svg|ico)$/,
-            loader: 'url-loader?limit=8192&name=./img/[hash].[ext]'
-        }, {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader'
-        }, {
-            test   : /\.css$/,
-            loader: ExtractTextPlugin.extract("style-loader", "css-loader")
-        },{
-            test: /\.scss$/,
-            loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
-        }]
+            test:/\.json$/,
+            loader:'file?name=./data/[name].[ext]'
+        },
+            {
+                test: /\.(jpe?g|png|gif|svg|ico)$/,
+                loader: 'url-loader?limit=8192&name=./img/[hash].[ext]'
+            }, {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader'
+            }, {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+            }, {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
+            }]
     },
 
     plugins: [
@@ -43,13 +51,15 @@ module.exports = {
             },
             output: {
                 comments: false
-            }
+            },
+            mangle: false
         }),
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
             "window.jQuery": "jquery"
-        })
+        }),
+        //new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js")
     ],
 
     devServer: {

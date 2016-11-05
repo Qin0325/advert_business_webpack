@@ -1,5 +1,7 @@
-import './common.module';
-import './common.service';
-import './common.constants';
-import './common.rest';
-import './common.directive';
+import './module';
+import './service';
+import './constants';
+import './rest';
+import './directive';
+import './controller';
+
